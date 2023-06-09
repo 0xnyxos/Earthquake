@@ -5,6 +5,8 @@ import {IVaultFactoryV2} from "../interfaces/IVaultFactoryV2.sol";
 import {IConditionProvider} from "../interfaces/IConditionProvider.sol";
 import {IPriceFeedAdapter} from "../interfaces/IPriceFeedAdapter.sol";
 
+import "forge-std/console.sol";
+
 contract RedstonePriceProvider is IConditionProvider {
     uint256 public immutable timeOut;
     IVaultFactoryV2 public immutable vaultFactory;
@@ -44,6 +46,8 @@ contract RedstonePriceProvider is IConditionProvider {
         if (price <= 0) revert OraclePriceZero();
         if (answeredInRound < roundId) revert RoundIdOutdated();
         // TODO: What is a suitable timeframe to set timeout as based on this info? Update at always timestamp?
+        console.logUint(updatedAt);
+        console.logUint(block.timestamp);
         if ((block.timestamp - updatedAt) > timeOut) revert PriceTimedOut();
 
         return price;
@@ -59,6 +63,7 @@ contract RedstonePriceProvider is IConditionProvider {
         uint256 _strike
     ) public view virtual returns (bool, int256 price) {
         price = getLatestPrice();
+        console.logInt(price);
         return (int256(_strike) > price, price);
     }
 
