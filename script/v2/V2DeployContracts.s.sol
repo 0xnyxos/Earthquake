@@ -27,16 +27,16 @@ contract V2DeployContracts is Script, HelperV2 {
         address emissionToken = addresses.y2k;
         address policy = addresses.policy;
 
-        // console2.log("Address admin", addresses.admin);
-        // console2.log(
-        //     "Address arbitrum_sequencer",
-        //     addresses.arbitrum_sequencer
-        // );
-        // console2.log("Address gelatoOpsV2", addresses.gelatoOpsV2);
-        // console2.log(
-        //     "Address gelatoTaskTreasury",
-        //     addresses.gelatoTaskTreasury
-        // );
+        console2.log("Address admin", addresses.admin);
+        console2.log(
+            "Address arbitrum_sequencer",
+            addresses.arbitrum_sequencer
+        );
+        console2.log("Address gelatoOpsV2", addresses.gelatoOpsV2);
+        console2.log(
+            "Address gelatoTaskTreasury",
+            addresses.gelatoTaskTreasury
+        );
         console2.log("\n");
 
         uint256 privateKey = vm.envUint("PRIVATE_KEY");
