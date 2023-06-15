@@ -31,6 +31,8 @@ contract Helper is Test {
     address public constant NOTADMIN = address(0x99);
     address public constant USER = 0xCCA23C05a9Cf7e78830F3fd55b1e8CfCCbc5E50F;
     address public constant USER2 = address(0x12312);
+
+    ///////////////////// ORACLES ///////////////////////
     address public constant ARBITRUM_SEQUENCER =
         0xFdB631F5EE196F0ed6FAa767959853A9F217697D;
     address public constant ARBITRUM_SEQUENCER_GOERLI =
@@ -49,10 +51,13 @@ contract Helper is Test {
         0xd85E038593d7A098614721EaE955EC2022B9B91B;
     address public constant DIA_ORACLE_V2 =
         0xd041478644048d9281f88558E6088e9da97df624;
+    address public constant CVI_ORACLE =
+        0x649813B6dc6111D67484BaDeDd377D32e4505F85;
     address public constant RELAYER = address(0x55);
     address public UNDERLYING = address(0x123);
     address public TOKEN = address(new MintableToken("Token", "tkn"));
-    // keeper variables
+
+    ///////////////////// KEEPER ///////////////////////
     address public ops = 0xB3f5503f93d5Ef84b06993a1975B9D21B962892F;
     address public treasuryTask = 0xB2f34fd4C16e656163dADFeEaE4Ae0c1F13b140A;
 
