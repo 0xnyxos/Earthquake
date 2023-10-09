@@ -28,7 +28,8 @@ contract PythPriceProviderTest is Helper {
         pythProvider = new PythPriceProvider(
             PYTH_CONTRACT,
             PYTH_FDUSD_FEED_ID,
-            TIME_OUT);
+            TIME_OUT
+        );
 
         uint256 condition = 2;
         pythProvider.setConditionType(marketId, condition);
@@ -38,11 +39,11 @@ contract PythPriceProviderTest is Helper {
     //                STATE                       //
     ////////////////////////////////////////////////
 
-    function testRedStoneCreation() public {
+    function testPythCreation() public {
         assertEq(pythProvider.timeOut(), TIME_OUT);
         assertEq(pythProvider.priceFeedId(), PYTH_FDUSD_FEED_ID);
         assertEq(address(pythProvider.pyth()), PYTH_CONTRACT);
-        assertEq(pythProvider.decimals(), 18);
+        assertEq(pythProvider.decimals(), 8);
     }
 
     ////////////////////////////////////////////////
@@ -125,7 +126,7 @@ contract PythPriceProviderTest is Helper {
 
     function testRevertOraclePriceNegative() public {
         address mockPyth = address(new MockOracleAnswerNegativePyth());
-        pythProvider =  new PythPriceProvider(
+        pythProvider = new PythPriceProvider(
             mockPyth,
             PYTH_FDUSD_FEED_ID,
             TIME_OUT
@@ -136,11 +137,17 @@ contract PythPriceProviderTest is Helper {
 
     function testRevertOracleExponentTooSmall() public {
         address mockPyth = address(new MockOracleExponentTooSmallPyth());
-        pythProvider =  new PythPriceProvider(
+        pythProvider = new PythPriceProvider(
             mockPyth,
             PYTH_FDUSD_FEED_ID,
-            TIME_OUT        );
-        vm.expectRevert(PythPriceProvider.ExponentTooSmall.selector);
+            TIME_OUT
+        );
+        vm.expectRevert(
+            abi.encodeWithSelector(
+                PythPriceProvider.ExponentTooSmall.selector,
+                int256(-19)
+            )
+        );
         pythProvider.getLatestPrice();
     }
 }
