@@ -11,6 +11,7 @@ contract Helper is Test {
     event AssertionResolved(bytes32 assertionId, bool assertion);
     event ProtocolFeeCollected(uint256 indexed epochId, uint256 indexed fee);
     event BondUpdated(uint256 newBond);
+    event MarketConditionSet(uint256 indexed marketId, uint256 conditionType);
 
     uint256 public constant STRIKE = 1000000000000000000;
     uint256 public constant COLLATERAL_MINUS_FEES = 21989999998398551453;
@@ -61,8 +62,10 @@ contract Helper is Test {
     address public constant CVI_ORACLE =
         0x649813B6dc6111D67484BaDeDd377D32e4505F85;
     uint256 public constant CVI_DECIMALS = 18;
-    address public constant PYTH_CONTRACT = 0xff1a0f4744e8582DF1aE09D5611b887B6a12925C;
-    bytes32 public constant PYTH_FDUSD_FEED_ID = 0xccdc1a08923e2e4f4b1e6ea89de6acbc5fe1948e9706f5604b8cb50bc1ed3979;
+    address public constant PYTH_CONTRACT =
+        0xff1a0f4744e8582DF1aE09D5611b887B6a12925C;
+    bytes32 public constant PYTH_FDUSD_FEED_ID =
+        0xccdc1a08923e2e4f4b1e6ea89de6acbc5fe1948e9706f5604b8cb50bc1ed3979;
     address public constant RELAYER = address(0x55);
     address public UNDERLYING = address(0x123);
     address public TOKEN = address(new MintableToken("Token", "tkn"));
