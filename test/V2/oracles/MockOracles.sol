@@ -125,7 +125,7 @@ contract MockOracleConditionNotMet {
 
     function conditionMet(
         uint256 _strike,
-        uint256 _marketId
+        uint256
     ) external view returns (bool, int256 price) {
         (, price, , , ) = latestRoundData();
         return (int256(_strike) > price, price);
@@ -202,7 +202,7 @@ contract MockOracleConditionMet {
 
     function conditionMet(
         uint256 _strike,
-        uint256 _marketId
+        uint256
     ) external view returns (bool, int256 price) {
         (, price, , , ) = latestRoundData();
         return (int256(_strike) > price, price);
@@ -342,7 +342,7 @@ contract MockOracleConditionMetCVI {
 ////////////////// Pyth Implementation //////////////////
 contract MockOracleAnswerNegativePyth {
     function getPriceUnsafe(
-        bytes32 priceFeedId
+        bytes32
     ) external view returns (PythStructs.Price memory price) {
         return PythStructs.Price(0, 0, -8, block.timestamp);
     }
@@ -357,7 +357,7 @@ contract MockOracleAnswerNegativePyth {
 
 contract MockOracleExponentTooSmallPyth {
     function getPriceUnsafe(
-        bytes32 priceFeedId
+        bytes32
     ) external view returns (PythStructs.Price memory price) {
         return PythStructs.Price(899898, 0, -19, block.timestamp);
     }
